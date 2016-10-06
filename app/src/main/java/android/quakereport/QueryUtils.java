@@ -1,5 +1,6 @@
 package android.quakereport;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -19,6 +20,10 @@ final class QueryUtils {
     }
 
     static List<Earthquake> extractEarthquakes(String jsonResponse) {
+        if (TextUtils.isEmpty(jsonResponse)) {
+            return null;
+        }
+
         List<Earthquake> earthquakes = new ArrayList<>();
 
         try {

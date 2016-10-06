@@ -32,7 +32,7 @@ public class EarthquakeActivity extends AppCompatActivity {
      * URL to query the USGS dataset for earthquake information
      */
     private static final String USGS_REQUEST_URL =
-            "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2012-01-01&endtime=2012-12-01&minmagnitude=6";
+            "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class EarthquakeActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Earthquake> earthquakes) {
-            if (earthquakes != null) {
+            if (earthquakes != null && !earthquakes.isEmpty()) {
                 updateUI(earthquakes);
             }
         }
@@ -113,9 +113,14 @@ public class EarthquakeActivity extends AppCompatActivity {
          * @throws IOException
          */
         private String makeHttpRequest(URL url) throws IOException {
+            String jsonResponse = "";
+
+            if (url == null) {
+                return jsonResponse;
+            }
+
             HttpURLConnection urlConnection = null;
             InputStream inputStream = null;
-            String jsonResponse = "";
 
             try {
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -127,16 +132,20 @@ public class EarthquakeActivity extends AppCompatActivity {
                 if (urlConnection.getResponseCode() == 200) {
                     inputStream = urlConnection.getInputStream();
                     jsonResponse = readFromInputStream(inputStream);
+                } else {
+                    Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
                 }
-
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
             } finally {
                 if (urlConnection != null) {
                     urlConnection.disconnect();
                 }
 
                 if (inputStream != null) {
+                    // Closing the input stream could throw an IOException, which is why
+                    // the makeHttpRequest(URL url) method signature specifies than an IOException
+                    // could be thrown.
                     inputStream.close();
                 }
             }
