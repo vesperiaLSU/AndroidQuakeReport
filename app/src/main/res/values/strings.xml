@@ -3,4 +3,8 @@
     <string name="app_name">Quake Report</string>
     <!-- Default text to show with the earthquake location ("Near the Pacific-Antarctic Ridge") if no specific kilometer distance from the primary location is given [CHAR LIMIT=30] -->
     <string name="near_the">Near the</string>
+    <!-- Default text to show when there is results sent back from USGS -->
+    <string name="no_earthquake">No earthquake found.</string>
+    <!-- Default text to show when there is no internet connection -->
+    <string name="no_internet_connection">No Internet Connection.</string>
 </resources>
