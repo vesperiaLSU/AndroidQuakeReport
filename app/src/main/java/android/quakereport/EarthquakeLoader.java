@@ -5,12 +5,7 @@ import android.content.Context;
 
 import java.util.List;
 
-public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
-
-    /**
-     * Tag for log messages
-     */
-    private static final String LOG_TAG = EarthquakeLoader.class.getName();
+class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
 
     /**
      * Query URL
@@ -22,7 +17,7 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<Earthquake>> {
      * @param context of the activity
      * @param url to load data from
      */
-    public EarthquakeLoader(Context context , String url) {
+    EarthquakeLoader(Context context, String url) {
         super(context);
         this.url = url;
     }

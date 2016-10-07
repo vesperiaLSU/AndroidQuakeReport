@@ -1,6 +1,6 @@
 package android.quakereport;
 
-public class Earthquake {
+class Earthquake {
     /** Magnitude of the earthquake */
     private double mMagnitude;
 
@@ -21,7 +21,7 @@ public class Earthquake {
      * @param url is the website URL to find more details about the earthquake
      */
 
-    public Earthquake(double magnitude, String location, long timeInMilliseconds, String url) {
+    Earthquake(double magnitude, String location, long timeInMilliseconds, String url) {
         mMagnitude = magnitude;
         mLocation = location;
         mTimeInMilliseconds = timeInMilliseconds;
@@ -31,28 +31,28 @@ public class Earthquake {
     /**
      * Returns the magnitude of the earthquake.
      */
-    public double getMagnitude() {
+    double getMagnitude() {
         return mMagnitude;
     }
 
     /**
      * Returns the location of the earthquake.
      */
-    public String getLocation() {
+    String getLocation() {
         return mLocation;
     }
 
     /**
      * Returns the time of the earthquake.
      */
-    public long getTimeInMilliseconds() {
+    long getTimeInMilliseconds() {
         return mTimeInMilliseconds;
     }
 
     /**
      * Returns the website URL to find more information about the earthquake.
      */
-    public String getUrl() {
+    String getUrl() {
         return mUrl;
     }
 }
