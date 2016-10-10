@@ -2,7 +2,6 @@ package android.quakereport;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
-import android.icu.text.TimeZoneFormat;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,6 +39,7 @@ class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
      * Returns a list item view that displays information about the earthquake at the given position
      * in the list of earthquakes.
      */
+    @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         // Check if there is an existing list item view (called recycled view) that we can reuse,
